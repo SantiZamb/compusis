@@ -5,15 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <title>Compusis de Colombia | Equipos de punto de venta, etiquetas y formación técnica</title>
-  <meta name="description" content="Equipos de punto de venta, lectores de código de barras, impresoras de recibos, etiquetas y carnets para empresas en Colombia. Formación técnica laboral (ETDH).">
+  <title>Compusis de Colombia | Formación técnica y equipos para empresas</title>
+  <meta name="description" content="Técnicos laborales, cursos cortos y capacitación para empresas en Bogotá, Girardot e Ibagué. Equipos de punto de venta, lectores, impresoras de recibos, etiquetas y carnets.">
   <link rel="canonical" href="https://santizamb.github.io/compusis/">
   <meta name="theme-color" content="#2b366d">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="es_CO">
   <meta property="og:site_name" content="Compusis de Colombia">
-  <meta property="og:title" content="Compusis de Colombia | Tecnología para su negocio">
-  <meta property="og:description" content="Cajones monederos, lectores de código de barras, impresoras de recibos, etiquetas y carnets. Cotice por WhatsApp.">
+  <meta property="og:title" content="Compusis de Colombia | Formamos talento y equipamos empresas">
+  <meta property="og:description" content="Técnicos laborales, cursos cortos y equipos de punto de venta, etiquetas y carnets para empresas.">
   <meta property="og:url" content="https://santizamb.github.io/compusis/">
   <meta property="og:image" content="https://santizamb.github.io/compusis/assets/og.jpg">
   <meta property="og:image:width" content="1200">
@@ -25,14 +25,20 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
+    "@type": ["EducationalOrganization", "LocalBusiness"],
     "name": "Compusis de Colombia",
-    "description": "Venta y asesoría de equipos de punto de venta, lectores de código de barras, impresoras de recibos, etiquetas y carnets. Formación técnica para el trabajo.",
+    "description": "Institución de Educación para el Trabajo y el Desarrollo Humano y comercializadora de equipos de punto de venta, etiquetado y carnetización.",
     "url": "https://santizamb.github.io/compusis/",
     "image": "https://santizamb.github.io/compusis/assets/og.jpg",
     "logo": "https://santizamb.github.io/compusis/assets/logo.png",
     "telephone": ["+57 310 872 1135", "+57 317 377 6690"],
-    "address": { "@type": "PostalAddress", "streetAddress": "Calle 17 N. 98-90", "addressCountry": "CO" },
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Calle 17 N. 98-90, piso 2",
+      "addressLocality": "Bogotá",
+      "addressRegion": "Bogotá D.C.",
+      "addressCountry": "CO"
+    },
     "sameAs": ["https://www.compusis.edu.co"]
   }
   </script>
@@ -47,10 +53,10 @@
       </a>
       <button class="menu-toggle" aria-expanded="false" aria-controls="menu">Menú</button>
       <nav id="menu" class="nav" aria-label="Principal">
+        <a href="#formacion">Formación</a>
         <a href="#productos">Productos</a>
         <a href="#sectores">Sectores</a>
         <a href="#guias">Guías</a>
-        <a href="#formacion">Formación</a>
         <a href="#contacto">Contacto</a>
         <a class="btn btn-red btn-sm" href="https://wa.me/573108721135" target="_blank" rel="noopener">Escríbanos por WhatsApp</a>
       </nav>
@@ -62,10 +68,11 @@
     <section class="hero">
       <div class="wrap hero-grid">
         <div class="hero-copy">
-          <h1>Equipos para que su negocio venda, etiquete y despache sin pausas.</h1>
-          <p class="lede">Asesoría y venta de equipos de punto de venta, lectores, impresoras de recibos, etiquetas y carnets para empresas en Colombia.</p>
+          <h1>Formamos talento y equipamos empresas.</h1>
+          <p class="lede">En Compusis de Colombia trabajamos en dos líneas: educación para el trabajo y comercialización de tecnología. Las dos tienen un mismo propósito: mejorar el desempeño de las personas y de las organizaciones.</p>
           <div class="hero-actions">
-            <a class="btn btn-red" href="#productos">Ver productos</a>
+            <a class="btn btn-red" href="#formacion">Ver cursos</a>
+            <a class="btn btn-navy" href="#productos">Ver productos</a>
             <a class="btn btn-ghost" href="#contacto">Solicitar una cotización</a>
           </div>
           <p class="motto">Fortalecemos el talento, impulsamos la tecnología.</p>
@@ -73,24 +80,224 @@
         <div class="hero-media" aria-hidden="true">
           <div class="slash slash-navy"></div>
           <div class="slash slash-red"></div>
-          <img src="assets/fotos/caja.webp" alt="" class="hero-photo">
-          <img src="assets/productos/impresora-q38t.webp" alt="" class="hero-product">
+          <div class="hero-panels">
+            <img src="assets/fotos/formacion-clase.webp" alt="" class="hero-photo">
+            <div class="hero-tech">
+              <img src="assets/productos/impresora-q38t.webp" alt="">
+              <img src="assets/productos/lector-sat-ld101r.webp" alt="">
+              <img src="assets/productos/impresora-tt448.webp" alt="">
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- Dos líneas -->
-    <section class="lines wrap" aria-labelledby="lineas-t">
-      <h2 id="lineas-t" class="visually-hidden">Nuestras líneas de servicio</h2>
-      <div class="line">
-        <h3>Soluciones tecnológicas</h3>
-        <p>Suministramos equipos de cómputo, impresión, seguridad y punto de venta que mejoran la eficiencia operativa y la continuidad de su negocio. Lo acompañamos desde la elección del equipo hasta su puesta en marcha.</p>
-        <a href="#productos" class="text-link">Explorar el portafolio</a>
+    <section class="lines-section wrap" aria-labelledby="lineas-t">
+      <div class="lines-head">
+        <h2 id="lineas-t">Dos líneas de negocio, un mismo objetivo</h2>
+        <p>Una empresa mejora cuando su gente está bien preparada y cuenta con las herramientas adecuadas. Por eso en Compusis manejamos dos líneas independientes que se complementan: una forma a las personas y la otra suministra la tecnología con la que trabajan.</p>
       </div>
-      <div class="line">
-        <h3>Educación para el trabajo y el desarrollo humano</h3>
-        <p>Formamos técnicos en administración, contabilidad, diseño gráfico y mantenimiento de computadores, con práctica en herramientas y competencias que se usan en el trabajo.</p>
-        <a href="#formacion" class="text-link">Conocer los programas</a>
+      <div class="lines">
+        <div class="line">
+          <h3>Educación para el trabajo y el desarrollo humano</h3>
+          <p>Formamos técnicos laborales y dictamos cursos cortos y capacitaciones para empresas en sistemas, administración, contabilidad, diseño gráfico y mantenimiento de computadores. Las clases son prácticas y se enfocan en lo que se usa en el trabajo.</p>
+          <a href="#formacion" class="text-link">Ver programas y cursos</a>
+        </div>
+        <div class="line">
+          <h3>Comercialización de tecnología</h3>
+          <p>Asesoramos y suministramos equipos de punto de venta, lectores de código de barras, impresoras de recibos, etiquetas y carnets, con garantía. Le ayudamos a elegir el equipo adecuado para su operación.</p>
+          <a href="#productos" class="text-link">Ver productos</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Formación -->
+    <section id="formacion" class="training">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Formación para el trabajo</h2>
+          <p>Somos una institución de Educación para el Trabajo y el Desarrollo Humano (ETDH). Preparamos técnicos laborales y capacitamos a personas y equipos de trabajo con clases prácticas.</p>
+        </div>
+
+        <div class="training-intro">
+          <img src="assets/fotos/formacion-practica.webp" alt="Estudiantes practicando frente al computador con acompañamiento del docente" loading="lazy" class="training-photo" width="1050" height="700">
+          <ul class="facts">
+            <li>Más de 30 años formando talento</li>
+            <li>Certificación de calidad NTC 5555</li>
+            <li>Programas aprobados por la Secretaría de Educación</li>
+            <li>Programas registrados ante el SENA, con opción de contrato de aprendizaje</li>
+            <li>Matrícula gratis</li>
+            <li>Horarios flexibles y facilidades de pago</li>
+            <li>Sedes en Bogotá, Girardot e Ibagué</li>
+          </ul>
+        </div>
+
+        <div class="subhead">
+          <h3>Técnicos laborales</h3>
+          <p>Duran tres semestres y las inscripciones están abiertas todo el año. Al terminar, el estudiante recibe un certificado de aptitud ocupacional. Todos incluyen informática, emprendimiento e inglés.</p>
+        </div>
+
+        <ul class="programs-grid">
+          <li class="program">
+            <h4>Técnico en Sistemas</h4>
+            <p>Soporte a usuarios, bases de datos, redes y herramientas ofimáticas.</p>
+            <details>
+              <summary>Ver plan de estudios</summary>
+              <div class="plan">
+                <h5>Módulos</h5>
+                <ul>
+                  <li><strong>Diseño:</strong> procedimientos iniciales, vectorización y edición, animaciones, montajes, multimedia.</li>
+                  <li><strong>Bases de datos:</strong> lógica de programación, PHP, MySQL, HTML, Access.</li>
+                  <li><strong>Redes:</strong> redes I y II, electricidad básica, conexiones remotas, seguridad en la red, configuración de cámaras.</li>
+                </ul>
+                <h5>Podrá trabajar como</h5>
+                <p>Auxiliar de sistemas, programador y administrador de bases de datos, digitador de sistemas de información, operador de herramientas ofimáticas o diseñador de medios publicitarios.</p>
+                <h5>Certificado</h5>
+                <p>Ibagué: Técnico Laboral en Asistente en Sistemas Informáticos. Girardot: Técnico Laboral por Competencias en Administración de Redes y Programación de Computadores.</p>
+              </div>
+            </details>
+            <a class="btn btn-navy btn-sm" target="_blank" rel="noopener" href="https://wa.me/573108721135?text=Hola%20Compusis%2C%20quiero%20informaci%C3%B3n%20sobre%20el%20T%C3%A9cnico%20en%20Sistemas">Pedir información</a>
+          </li>
+          <li class="program">
+            <h4>Técnico en Administración</h4>
+            <p>Gestión de empresas, talento humano, mercadeo y servicio al cliente.</p>
+            <details>
+              <summary>Ver plan de estudios</summary>
+              <div class="plan">
+                <h5>Módulos</h5>
+                <ul>
+                  <li><strong>General:</strong> fundamentos de la administración, legislación comercial, organización y dirección, análisis financiero, costos.</li>
+                  <li><strong>Talento humano:</strong> selección, contratación, legislación laboral, SG-SST, sistemas de gestión de calidad, normatividad.</li>
+                  <li><strong>Mercadeo:</strong> clientes, servicio al cliente, gestión y técnicas de venta, procesos, marketing digital.</li>
+                </ul>
+                <h5>Podrá trabajar como</h5>
+                <p>Auxiliar administrativo, auxiliar de área de personal, auxiliar de mercadeo o administrador de su propio negocio.</p>
+                <h5>Certificado</h5>
+                <p>Ibagué: Técnico Laboral en Auxiliar Administrativo. Girardot: Técnico Laboral por Competencias en Gestión Empresarial y de Negocios.</p>
+              </div>
+            </details>
+            <a class="btn btn-navy btn-sm" target="_blank" rel="noopener" href="https://wa.me/573108721135?text=Hola%20Compusis%2C%20quiero%20informaci%C3%B3n%20sobre%20el%20T%C3%A9cnico%20en%20Administraci%C3%B3n">Pedir información</a>
+          </li>
+          <li class="program">
+            <h4>Técnico en Contabilidad</h4>
+            <p>Contabilidad manual y sistematizada, nómina, impuestos y normas NIIF.</p>
+            <details>
+              <summary>Ver plan de estudios</summary>
+              <div class="plan">
+                <h5>Módulos</h5>
+                <ul>
+                  <li><strong>Contabilidad manual:</strong> fundamentos, registros contables, inventarios, nómina, estados financieros.</li>
+                  <li><strong>Contabilidad sistematizada:</strong> introducción al software, procesos contables, normas NIIF, manejo del software contable.</li>
+                  <li><strong>Administración:</strong> principios de administración y gestión, legislación laboral y comercial, procesos organizacionales.</li>
+                </ul>
+                <h5>Podrá trabajar como</h5>
+                <p>Auxiliar contable, asistente de departamento financiero, liquidador de nómina o de impuestos, auxiliar de cartera o digitador en software contable.</p>
+                <h5>Certificado</h5>
+                <p>Ibagué: Técnico Laboral en Auxiliar Contable y Financiero. Girardot: Técnico Laboral por Competencias en Gestión Contable Sistematizada.</p>
+              </div>
+            </details>
+            <a class="btn btn-navy btn-sm" target="_blank" rel="noopener" href="https://wa.me/573108721135?text=Hola%20Compusis%2C%20quiero%20informaci%C3%B3n%20sobre%20el%20T%C3%A9cnico%20en%20Contabilidad">Pedir información</a>
+          </li>
+          <li class="program">
+            <h4>Técnico en Diseño Gráfico</h4>
+            <p>Piezas gráficas, multimedia, diseño web y publicidad.</p>
+            <details>
+              <summary>Ver plan de estudios</summary>
+              <div class="plan">
+                <h5>Módulos</h5>
+                <ul>
+                  <li><strong>Diseño gráfico:</strong> procedimientos iniciales, vectorización y edición, teoría del color, maquetación, desarrollo y publicidad.</li>
+                  <li><strong>Diseño multimedia:</strong> desarrollo creativo, edición multimedia, efectos y animaciones, diseño web.</li>
+                  <li><strong>Mercadeo:</strong> clientes, servicio, gestión y técnicas de venta, marketing.</li>
+                </ul>
+                <h5>Podrá trabajar como</h5>
+                <p>Creador de contenido multimedia, analista de marketing digital, diseñador de medios publicitarios o realizador de proyectos visuales y audiovisuales.</p>
+                <h5>Certificado</h5>
+                <p>Ibagué: Técnico Laboral en Auxiliar en Mercadeo y Publicidad. Girardot: Técnico Laboral por Competencias en Diseño Gráfico Publicitario y Multimedia.</p>
+              </div>
+            </details>
+            <a class="btn btn-navy btn-sm" target="_blank" rel="noopener" href="https://wa.me/573108721135?text=Hola%20Compusis%2C%20quiero%20informaci%C3%B3n%20sobre%20el%20T%C3%A9cnico%20en%20Dise%C3%B1o%20Gr%C3%A1fico">Pedir información</a>
+          </li>
+          <li class="program">
+            <h4>Técnico en Mantenimiento de Computadores</h4>
+            <p>Diagnóstico, reparación y ensamble de equipos, redes y seguridad.</p>
+            <details>
+              <summary>Ver plan de estudios</summary>
+              <div class="plan">
+                <h5>Módulos</h5>
+                <ul>
+                  <li><strong>Mantenimiento:</strong> tipos de mantenimiento, mantenimiento de software, actualizaciones, aplicaciones, seguridad.</li>
+                  <li><strong>Redes:</strong> redes I y II, electricidad básica, conexiones remotas, seguridad en la red, configuración de cámaras.</li>
+                  <li><strong>Diseño:</strong> edición, vectorización, tratamiento de imágenes, animaciones y multimedia.</li>
+                </ul>
+                <h5>Podrá trabajar como</h5>
+                <p>Asesor en instalación de componentes y programas, ensamblador de computadores, jefe de mantenimiento y garantías o auxiliar técnico de departamento de cómputo.</p>
+                <h5>Certificado</h5>
+                <p>Girardot: Técnico Laboral por Competencias en Mantenimiento de Equipos de Cómputo.</p>
+              </div>
+            </details>
+            <a class="btn btn-navy btn-sm" target="_blank" rel="noopener" href="https://wa.me/573108721135?text=Hola%20Compusis%2C%20quiero%20informaci%C3%B3n%20sobre%20el%20T%C3%A9cnico%20en%20Mantenimiento%20de%20Computadores">Pedir información</a>
+          </li>
+        </ul>
+        <p class="legal-note">La inspección y vigilancia de estos programas está a cargo de la Secretaría de Educación. Los programas ofrecidos no conducen a la obtención de un título profesional.</p>
+
+        <div class="subhead">
+          <h3>Cursos cortos</h3>
+          <p>Para quienes necesitan una habilidad concreta. Organizados por niveles, de modo que cada persona empieza donde le corresponde.</p>
+        </div>
+        <ul class="courses">
+          <li>
+            <h4>Sistemas, nivel básico</h4>
+            <p>Uso del computador, sistema operativo, programas básicos, internet y buenas prácticas.</p>
+          </li>
+          <li>
+            <h4>Sistemas, nivel avanzado</h4>
+            <p>Manejo profundo de los programas, configuración y sincronización del correo, plataformas, aplicaciones y diseño.</p>
+          </li>
+          <li>
+            <h4>Excel básico</h4>
+            <p>Área de trabajo, manejo de información, fórmulas iniciales, referencias, tablas y gráficos.</p>
+          </li>
+          <li>
+            <h4>Excel intermedio</h4>
+            <p>Plantillas, fórmulas avanzadas, trabajo con datos, tablas y gráficos dinámicos y macros.</p>
+          </li>
+          <li>
+            <h4>Excel avanzado</h4>
+            <p>Automatización de datos, funciones avanzadas, informes interactivos, análisis de datos y Power BI.</p>
+          </li>
+        </ul>
+        <a class="btn btn-red" target="_blank" rel="noopener" href="https://wa.me/573108721135?text=Hola%20Compusis%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20cursos%20cortos">Consultar horarios y precios</a>
+
+        <div class="companies">
+          <div>
+            <h3>Capacitación a la medida para empresas</h3>
+            <p>Diseñamos cursos, seminarios, talleres y diplomados según lo que necesita su equipo de trabajo, en temas como:</p>
+          </div>
+          <div>
+            <ul class="facts facts-light">
+              <li>Marketing digital y redes sociales</li>
+              <li>Contabilidad para no contadores</li>
+              <li>Mantenimiento de computadores y redes</li>
+              <li>Ventas y técnicas de venta</li>
+              <li>Servicio al cliente</li>
+              <li>Herramientas ofimáticas y Excel</li>
+            </ul>
+            <a class="btn btn-light" target="_blank" rel="noopener" href="https://wa.me/573108721135?text=Hola%20Compusis%2C%20quiero%20cotizar%20una%20capacitaci%C3%B3n%20para%20mi%20empresa">Cotizar una capacitación</a>
+          </div>
+        </div>
+
+        <div class="campuses">
+          <h3>Nuestras sedes</h3>
+          <div>
+            <dl class="campus-list">
+              <div><dt>Bogotá</dt><dd>Calle 17 N. 98-90, piso 2, Fontibón Centro</dd></div>
+              <div><dt>Girardot</dt><dd>Carrera 10 N. 17-44, piso 2, Centro</dd></div>
+              <div><dt>Ibagué</dt><dd>Avenida Ferrocarril N. 29-58, barrio La Francia</dd></div>
+            </dl>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -170,7 +377,7 @@
       <h2 id="marcas-t">Marcas en portafolio</h2>
       <ul class="brand-list">
         <li><img src="assets/marcas/zebra.png" alt="Zebra" loading="lazy"></li>
-        <li><img src="assets/marcas/sat.png" alt="SAT" class="invert" loading="lazy"></li>
+        <li><img src="assets/marcas/sat.png" alt="SAT" loading="lazy"></li>
         <li><img src="assets/marcas/hid.png" alt="HID" loading="lazy"></li>
         <li><img src="assets/marcas/zkteco.png" alt="ZKTeco" loading="lazy"></li>
         <li><img src="assets/marcas/topaz.png" alt="Topaz Systems" loading="lazy"></li>
@@ -180,29 +387,11 @@
       </ul>
     </section>
 
-    <!-- Formación -->
-    <section id="formacion" class="training">
-      <div class="wrap training-grid">
-        <img src="assets/fotos/aula.webp" alt="Estudiantes en un aula de formación tecnológica" loading="lazy" class="training-photo">
-        <div>
-          <h2>Formación técnica para el trabajo</h2>
-          <p>Como institución de Educación para el Trabajo y el Desarrollo Humano (ETDH), preparamos técnicos con formación práctica que se aplica desde el primer día.</p>
-          <ul class="programs">
-            <li>Administración</li>
-            <li>Contabilidad</li>
-            <li>Diseño gráfico</li>
-            <li>Mantenimiento de computadores</li>
-          </ul>
-          <a class="btn btn-light" href="https://www.compusis.edu.co" target="_blank" rel="noopener">Ver programas en compusis.edu.co</a>
-        </div>
-      </div>
-    </section>
-
     <!-- Quiénes somos -->
     <section class="about wrap">
       <div>
         <h2>Quiénes somos</h2>
-        <p>Compusis de Colombia es una empresa con dos líneas de negocio independientes, enfocadas en el desarrollo del talento y la implementación de tecnología para empresas y personas. En cada línea mantenemos un enfoque especializado, profesional y orientado a resultados.</p>
+        <p>Compusis de Colombia es una empresa con más de 30 años de trayectoria y dos líneas de negocio independientes, enfocadas en el desarrollo del talento y la implementación de tecnología para empresas y personas. En cada línea mantenemos un enfoque especializado, profesional y orientado a resultados.</p>
       </div>
       <dl class="mv">
         <dt>Misión</dt>
@@ -217,9 +406,9 @@
       <div class="wrap contact-grid">
         <div>
           <h2>Cuéntenos qué necesita</h2>
-          <p>Le respondemos con opciones y una cotización. Si no está en este portafolio, lo buscamos por usted.</p>
+          <p>Le respondemos con información de cursos u opciones de equipos y una cotización.</p>
           <ul class="contact-list">
-            <li><span>Dirección</span> <a href="https://www.google.com/maps/search/?api=1&query=Calle+17+%2398-90+Colombia" target="_blank" rel="noopener">Calle 17 N. 98-90</a></li>
+            <li><span>Dirección</span> <a href="https://www.google.com/maps/search/?api=1&query=Calle+17+%2398-90+Fontib%C3%B3n+Bogot%C3%A1" target="_blank" rel="noopener">Calle 17 N. 98-90, piso 2, Fontibón, Bogotá</a></li>
             <li><span>Teléfonos</span> <a href="tel:+573108721135">310 872 1135</a> · <a href="tel:+573173776690">317 377 6690</a></li>
             <li><span>Sitio web</span> <a href="https://www.compusis.edu.co" target="_blank" rel="noopener">www.compusis.edu.co</a></li>
           </ul>
@@ -227,8 +416,15 @@
         <form class="quote" id="quote">
           <label>Nombre <input name="nombre" required autocomplete="name"></label>
           <label>Empresa <input name="empresa" autocomplete="organization"></label>
+          <label>Me interesa
+            <select name="interes">
+              <option>Cursos y programas técnicos</option>
+              <option>Capacitación para mi empresa</option>
+              <option>Equipos y tecnología</option>
+            </select>
+          </label>
           <label>¿Qué necesita?
-            <textarea name="mensaje" rows="4" required placeholder="Ej.: 3 impresoras de recibos y 2 lectores para nuestras cajas"></textarea>
+            <textarea name="mensaje" rows="4" required placeholder="Ej.: información del Técnico en Contabilidad, o 3 impresoras de recibos para nuestras cajas"></textarea>
           </label>
           <button class="btn btn-red" type="submit">Enviar por WhatsApp</button>
           <p class="form-hint">Se abrirá WhatsApp con su mensaje listo para enviar.</p>
@@ -244,6 +440,7 @@
     </div>
   </footer>
 
+  <script src="productos.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
