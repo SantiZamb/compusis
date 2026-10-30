@@ -1,8 +1,13 @@
-Créditos de fotografías (licencia gratuita de Unsplash: https://unsplash.com/license)
+Créditos de fotografías
 
-capacitacion-presentacion.webp  "Man presenting to colleagues in a modern office setting"
-                        Vitaly Gariev — https://unsplash.com/photos/SvYifX5HkeQ
+hero-educacion.webp     "Students receiving guidance from a teacher in a well-equipped classroom"
+                        Mikhail Nilov — https://www.pexels.com/photo/a-teacher-pointing-at-a-student-s-laptop-during-class-9159087/
+                        Licencia de Pexels (uso gratuito): https://www.pexels.com/license/
+hero-tecnologia.webp    "Male warehouse worker scanning barrels with a tablet for inventory management"
+                        Tiger Lily — https://www.pexels.com/photo/photo-of-man-using-scanner-4484151/
+                        Licencia de Pexels (uso gratuito): https://www.pexels.com/license/
 formacion-equipo.webp   "Team collaborating around a computer in an office"
                         Vitaly Gariev — https://unsplash.com/photos/UikYLDQj9_I
+                        Licencia de Unsplash: https://unsplash.com/license
 
 Las demás fotos provienen del Portafolio de Tecnología de Compusis de Colombia.

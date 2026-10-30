@@ -40,7 +40,7 @@ function render(cat) {
       <div class="product-img"><img src="assets/productos/${p.img}.webp" alt="${esc(p.name)}" loading="lazy" width="400" height="400"></div>
       <div class="product-body">
         <h3>${esc(p.name)}</h3>
-        <p class="warranty">${p.warranty ? esc(p.warranty) : "Precio por volumen, consúltenos"}</p>
+        <p class="warranty">${p.warranty ? esc(p.warranty) : "Precio por volumen, consúltanos"}</p>
         ${p.desc ? `<p class="desc">${esc(p.desc)}</p>` : ""}
         <dl class="specs">${specRows(p.specs)}</dl>
         ${fichaLink(p)}
