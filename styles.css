@@ -247,23 +247,46 @@ p { margin: 0 0 1em; }
 .subhead { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 48px; align-items: end; margin: 0 0 24px; padding-top: 32px; border-top: 3px solid var(--red); }
 .subhead h3 { font-size: clamp(1.6rem, 3vw, 2.3rem); color: var(--navy-deep); margin: 0; }
 .subhead p { margin: 0; color: var(--muted); max-width: 56ch; }
-.programs-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; align-items: start; }
-.program { background: var(--paper); padding: 24px; display: flex; flex-direction: column; border-left: 4px solid var(--navy); }
-.program h4 { font-size: 1.35rem; font-variation-settings: "wdth" 75; font-weight: 800; color: var(--navy-deep); margin: 0 0 6px; line-height: 1.15; }
-.program > p { color: var(--muted); margin-bottom: 8px; }
-.program .btn { align-self: flex-start; margin-top: 16px; }
 details { margin-top: 4px; }
 summary { cursor: pointer; color: var(--navy); font-weight: 600; font-size: .95rem; padding: 6px 0; }
 .plan { font-size: .95rem; color: var(--ink); }
 .plan h5 { font-size: .95rem; margin: 14px 0 4px; color: var(--navy-deep); }
 .plan ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; }
 .plan p { margin: 0; color: var(--muted); }
-.legal-note { font-size: .85rem; color: var(--muted); margin: 20px 0 72px; max-width: 80ch; }
 .course-grid { list-style: none; margin: 0 0 56px; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; align-items: start; }
 .course { background: var(--white); border: 1px solid var(--line); border-top: 4px solid var(--red); padding: 24px; }
 .course h4 { font-size: 1.35rem; font-variation-settings: "wdth" 75; font-weight: 800; color: var(--navy-deep); margin: 0 0 4px; line-height: 1.15; }
 .course-meta { font-size: .9rem; font-weight: 700; color: var(--red); margin-bottom: 10px; }
-.course > p:not(.course-meta) { color: var(--muted); font-size: .97rem; }
+.course-teaser { color: var(--ink); font-size: 1rem; margin-bottom: 4px; }
+.course .plan > p { color: var(--muted); font-size: .97rem; margin: 6px 0 0; }
+.course { display: flex; flex-direction: column; }
+.course summary { color: var(--red); font-weight: 700; }
+
+/* Pestañas: personas / empresas */
+.tabs { display: inline-flex; gap: 4px; padding: 4px; background: var(--paper); border-radius: 999px; margin-bottom: 24px; }
+.tabs button {
+  font: inherit; font-weight: 700; font-size: .98rem;
+  padding: .6em 1.3em; border: 0; border-radius: 999px;
+  background: transparent; color: var(--navy-deep); cursor: pointer;
+}
+.tabs button[aria-selected="true"] { background: var(--navy-deep); color: var(--white); }
+.tab-panel[hidden] { display: none; }
+.tab-panel .companies { margin: 0 0 56px; }
+.companies h4 { font-size: clamp(1.5rem, 2.8vw, 2.1rem); font-variation-settings: "wdth" 75; font-weight: 800; margin: 0 0 .5em; max-width: 16ch; line-height: 1.1; }
+
+/* Reconocimientos */
+.recognitions { margin: -32px 0 72px; padding-top: 28px; border-top: 1px solid var(--line); }
+.recognitions h4 { font-size: 1.2rem; font-variation-settings: "wdth" 80; font-weight: 800; color: var(--navy-deep); margin: 0 0 18px; }
+.recognitions ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+.recognitions li { display: flex; align-items: center; gap: 14px; font-weight: 600; color: var(--navy-deep); line-height: 1.3; }
+.recognitions img { width: 96px; height: 76px; object-fit: contain; flex-shrink: 0; }
+.rec-icon { width: 96px; height: 52px; flex-shrink: 0; fill: none; stroke: var(--navy-deep); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; padding: 0 6px; }
+
+/* Sedes dentro de contacto */
+.contact-sub { font-size: 1.3rem; font-variation-settings: "wdth" 80; color: var(--navy-deep); margin: 28px 0 10px; }
+.contact .campus-list { margin-bottom: 8px; }
+.contact .campus-list a { color: var(--muted); text-decoration: none; }
+.contact .campus-list a:hover { color: var(--red); text-decoration: underline; }
 .course details { margin-top: 8px; }
 .course-info { margin: 10px 0 0; display: grid; gap: 4px; }
 .course-info div { display: flex; gap: 8px; }
@@ -286,9 +309,6 @@ summary { cursor: pointer; color: var(--navy); font-weight: 600; font-size: .95r
 .companies h3 { font-size: clamp(1.6rem, 3vw, 2.3rem); max-width: 16ch; }
 .companies p { color: #c8cce0; max-width: 46ch; }
 .facts-light { color: var(--white); margin-bottom: 28px; font-size: 1.05rem; }
-.campuses { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px 48px; align-items: start; padding-top: 32px; border-top: 3px solid var(--red); }
-.campuses p { color: var(--muted); max-width: 52ch; margin-top: 12px; }
-.campuses h3 { font-size: clamp(1.6rem, 3vw, 2.3rem); color: var(--navy-deep); margin: 0; }
 .campus-list { margin: 0; display: grid; gap: 16px; }
 .campus-list div { padding: 14px 0 0; border-top: 1px solid var(--line); }
 .campus-list dt { font-weight: 800; color: var(--red); font-variation-settings: "wdth" 80; font-size: 1.15rem; }
@@ -314,11 +334,11 @@ summary { cursor: pointer; color: var(--navy); font-weight: 600; font-size: .95r
 .contact-list a:hover { color: var(--red); text-decoration: underline; }
 .quote { background: var(--white); padding: 32px; display: grid; gap: 16px; align-content: start; }
 .quote label { display: grid; gap: 6px; font-weight: 600; color: var(--navy-deep); }
-.quote input, .quote textarea {
+.quote input, .quote textarea, .quote select {
   font: inherit; font-weight: 400; color: var(--ink);
   padding: .7em .8em; border: 1.5px solid var(--line); border-radius: 3px; background: var(--white);
 }
-.quote input:focus, .quote textarea:focus { border-color: var(--navy); outline: none; box-shadow: 0 0 0 3px rgba(43, 54, 109, .2); }
+.quote input:focus, .quote textarea:focus, .quote select:focus { border-color: var(--navy); outline: none; box-shadow: 0 0 0 3px rgba(43, 54, 109, .2); }
 .quote .btn { justify-self: start; }
 .form-hint { font-size: .9rem; color: var(--muted); margin: 0; }
 
@@ -356,7 +376,7 @@ summary { cursor: pointer; color: var(--navy); font-weight: 600; font-size: .95r
   .hero-media .slash { top: 0; }
   .lines-section { padding-top: 56px; padding-bottom: 32px; }
   .training, .catalog, .sectors, .guides, .contact { padding-top: 64px; padding-bottom: 64px; }
-  .lines, .lines-head, .section-head, .subhead, .training-intro, .companies, .campuses, .closing, .quality, .solutions-grid, .about, .contact-grid { grid-template-columns: 1fr; }
+  .lines, .lines-head, .section-head, .subhead, .training-intro, .companies, .closing, .quality, .solutions-grid, .about, .contact-grid { grid-template-columns: 1fr; }
   .companies { padding: 32px 24px; margin: 56px calc(var(--gutter) * -1); }
   .closing { padding: 28px 22px; }
   .course-grid { grid-template-columns: 1fr; }
