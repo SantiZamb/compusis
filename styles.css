@@ -361,6 +361,13 @@ summary { cursor: pointer; color: var(--navy); font-weight: 600; font-size: .95r
 .tech-list small { font-size: .9rem; color: var(--muted); }
 .etdh-note { background: var(--paper); border-left: 6px solid var(--navy-deep); padding: 18px 22px; color: var(--ink); font-size: .98rem; max-width: none; }
 .tech-cta { margin-bottom: 80px; }
+.btn-row { display: flex; flex-wrap: wrap; gap: 10px; }
+
+/* Misión y visión institucional */
+.mv-edu { display: grid; grid-template-columns: 1fr 1.4fr; gap: 24px 56px; margin: 0 0 72px; padding-top: 32px; border-top: 3px solid var(--red); }
+.mv-edu h3 { font-size: clamp(1.6rem, 3vw, 2.3rem); color: var(--navy-deep); }
+.mv-edu-head p { color: var(--muted); max-width: 40ch; }
+.mv-edu .mv dd { color: var(--ink); }
 .student-access { margin: 20px 0 0; color: var(--muted); font-size: .97rem; }
 
 /* Autorización de datos */
@@ -413,7 +420,7 @@ summary { cursor: pointer; color: var(--navy); font-weight: 600; font-size: .95r
   .hero-media .slash { top: 0; }
   .lines-section { padding-top: 56px; padding-bottom: 32px; }
   .training, .catalog, .sectors, .guides, .contact { padding-top: 64px; padding-bottom: 64px; }
-  .lines, .lines-head, .section-head, .subhead, .training-intro, .tech-programs, .companies, .closing, .quality, .solutions-grid, .about, .contact-grid { grid-template-columns: 1fr; }
+  .lines, .lines-head, .section-head, .subhead, .training-intro, .tech-programs, .mv-edu, .companies, .closing, .quality, .solutions-grid, .about, .contact-grid { grid-template-columns: 1fr; }
   .companies { padding: 32px 24px; margin: 56px calc(var(--gutter) * -1); }
   .closing { padding: 28px 22px; }
   .course-grid { grid-template-columns: 1fr; }
