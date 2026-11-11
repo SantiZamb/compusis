@@ -1,130 +1,104 @@
-// Los datos del catálogo están en productos.js (CATEGORIES y PRODUCTS)
-const WHATSAPP = "573108721135";
+// Interacciones del sitio. El contenido se genera con build.js a partir de los archivos de datos.
 
-const waLink = (text) => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(text)}`;
-const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
-const byId = Object.fromEntries(PRODUCTS.map((p) => [p.id, p]));
-
-const list = document.querySelector(".products");
-const filters = document.querySelector(".filters");
-
-function specRows(rows) {
-  return rows.map(([k, v]) => `<div class="spec"><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join("");
+// Enlaces antiguos de la versión de una sola página (index.html#seccion)
+if (document.body.dataset.page === "inicio" && location.hash) {
+  const old = {
+    "#educacion": "educacion/", "#cursos": "educacion/cursos/", "#tecnicos": "educacion/tecnicos/",
+    "#portafolio": "tecnologia/productos/", "#industrias": "tecnologia/#industrias",
+    "#guias": "tecnologia/#recursos", "#contacto": "contacto/",
+  }[location.hash];
+  if (old) location.replace(old);
 }
 
-function suggestions(p) {
-  const items = (p.sugeridos || []).map((id) => byId[id]).filter(Boolean);
-  if (!items.length) return "";
-  return `
-    <div class="suggested">
-      <p>Se complementa con</p>
-      <ul>${items.map((s) => `
-        <li><a href="#p-${s.id}" data-goto="${s.id}">
-          <img src="assets/productos/${s.img}.webp" alt="" loading="lazy" width="40" height="40">
-          <span>${esc(s.name)}</span>
-        </a></li>`).join("")}
-      </ul>
-    </div>`;
-}
-
-function fichaLink(p) {
-  return p.ficha
-    ? `<a class="ficha" href="assets/fichas/${encodeURIComponent(p.ficha)}" target="_blank" rel="noopener">Descargar ficha técnica (PDF)</a>`
-    : `<a class="ficha" href="${waLink(`Hola Compusis, ¿me pueden enviar la ficha técnica de: ${p.name}?`)}" target="_blank" rel="noopener">Solicitar ficha técnica</a>`;
-}
-
-function render(cat) {
-  const items = cat === "todos" ? PRODUCTS : PRODUCTS.filter((p) => p.cats.includes(cat));
-  list.innerHTML = items.map((p) => `
-    <li class="product" id="p-${p.id}">
-      <div class="product-img"><img src="assets/productos/${p.img}.webp" alt="${esc(p.name)}" loading="lazy" width="400" height="400"></div>
-      <div class="product-body">
-        <h3>${esc(p.name)}</h3>
-        <p class="warranty">${p.warranty ? esc(p.warranty) : "Precio por volumen, consúltanos"}</p>
-        ${p.desc ? `<p class="desc">${esc(p.desc)}</p>` : ""}
-        <dl class="specs">${specRows(p.specs)}</dl>
-        ${fichaLink(p)}
-        ${suggestions(p)}
-        <a class="btn btn-navy btn-sm" target="_blank" rel="noopener"
-           href="${waLink(`Hola Compusis, quiero cotizar: ${p.name}`)}">Cotizar este equipo</a>
-      </div>
-    </li>`).join("");
-}
-
-filters.innerHTML = CATEGORIES.map((c, i) => {
-  const n = c.id === "todos" ? PRODUCTS.length : PRODUCTS.filter((p) => p.cats.includes(c.id)).length;
-  return `<button type="button" data-cat="${c.id}" aria-pressed="${i === 0}">${c.name} <span>${n}</span></button>`;
-}).join("");
-
-function setFilter(cat) {
-  filters.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.cat === cat));
-  render(cat);
-}
-
-filters.addEventListener("click", (e) => {
-  const btn = e.target.closest("button");
-  if (btn) setFilter(btn.dataset.cat);
-});
-
-// Ir a un producto sugerido aunque el filtro actual lo oculte
-list.addEventListener("click", (e) => {
-  const link = e.target.closest("[data-goto]");
-  if (!link) return;
-  e.preventDefault();
-  if (!document.getElementById(`p-${link.dataset.goto}`)) setFilter("todos");
-  const target = document.getElementById(`p-${link.dataset.goto}`);
-  target.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
-  target.classList.remove("flash");
-  void target.offsetWidth;
-  target.classList.add("flash");
-  target.querySelector("a, button")?.focus({ preventScroll: true });
-});
-
-render("todos");
-
-// Pestañas de cursos: personas / empresas
-const tabs = document.querySelectorAll('[role="tab"]');
-function selectTab(tab) {
-  tabs.forEach((t) => {
-    const on = t === tab;
-    t.setAttribute("aria-selected", on);
-    t.tabIndex = on ? 0 : -1;
-    document.getElementById(t.getAttribute("aria-controls")).hidden = !on;
-  });
-}
-tabs.forEach((t, i) => {
-  t.addEventListener("click", () => selectTab(t));
-  t.addEventListener("keydown", (e) => {
-    if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
-    const next = tabs[(i + (e.key === "ArrowRight" ? 1 : tabs.length - 1)) % tabs.length];
-    selectTab(next);
-    next.focus();
-  });
-});
-if (tabs.length) selectTab(tabs[0]);
-
-// Menú móvil
+// Menú principal
 const toggle = document.querySelector(".menu-toggle");
 const menu = document.getElementById("menu");
+const subToggles = document.querySelectorAll(".sub-toggle");
+
+function closeSubs(except) {
+  subToggles.forEach((b) => {
+    if (b !== except) {
+      b.setAttribute("aria-expanded", "false");
+      b.parentElement.classList.remove("open");
+    }
+  });
+}
+
 toggle.addEventListener("click", () => {
-  const open = toggle.getAttribute("aria-expanded") === "true";
-  toggle.setAttribute("aria-expanded", !open);
-  menu.classList.toggle("open", !open);
+  const open = toggle.getAttribute("aria-expanded") !== "true";
+  toggle.setAttribute("aria-expanded", open);
+  menu.classList.toggle("open", open);
+  if (!open) closeSubs();
 });
-menu.addEventListener("click", (e) => {
-  if (e.target.tagName === "A") {
-    toggle.setAttribute("aria-expanded", "false");
-    menu.classList.remove("open");
+
+subToggles.forEach((b) => {
+  b.addEventListener("click", () => {
+    const open = b.getAttribute("aria-expanded") !== "true";
+    closeSubs(b);
+    b.setAttribute("aria-expanded", open);
+    b.parentElement.classList.toggle("open", open);
+  });
+});
+
+document.addEventListener("click", (e) => {
+  if (!e.target.closest(".has-sub")) closeSubs();
+});
+
+document.addEventListener("keydown", (e) => {
+  if (e.key !== "Escape") return;
+  const openSub = document.querySelector(".has-sub.open .sub-toggle");
+  if (openSub) {
+    closeSubs();
+    openSub.focus();
+  } else if (menu.classList.contains("open")) {
+    toggle.click();
+    toggle.focus();
   }
 });
 
-// Formulario de contacto -> WhatsApp
-document.getElementById("quote").addEventListener("submit", (e) => {
-  e.preventDefault();
-  const f = new FormData(e.target);
-  const empresa = f.get("empresa").trim();
-  const text = `Hola Compusis, soy ${f.get("nombre").trim()}${empresa ? ` de ${empresa}` : ""}.\nMe interesa: ${f.get("interes")}.\n${f.get("mensaje").trim()}`;
-  window.open(waLink(text), "_blank", "noopener");
+// Filtros y buscador de listados
+const fold = (s) => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+
+document.querySelectorAll("[data-listing]").forEach((listing) => {
+  const toolbar = listing.querySelector("[data-toolbar]");
+  const items = [...listing.querySelectorAll("[data-items] > li")];
+  const count = listing.querySelector("[data-count]");
+  const empty = listing.querySelector("[data-empty]");
+  const search = listing.querySelector("[data-search]");
+  const groups = [...listing.querySelectorAll("[data-filter]")];
+  toolbar.hidden = false;
+
+  function apply() {
+    const query = search ? fold(search.value.trim()) : "";
+    const active = groups.map((g) => [g.dataset.filter, g.querySelector('[aria-pressed="true"]').dataset.value]);
+    let shown = 0;
+    items.forEach((li) => {
+      const ok = active.every(([key, value]) => !value || (li.dataset[key] || "").split(" ").includes(value))
+        && (!query || query.split(/\s+/).every((w) => (li.dataset.search || fold(li.textContent)).includes(w)));
+      li.hidden = !ok;
+      if (ok) shown++;
+    });
+    count.textContent = shown === items.length ? "" : `${shown} de ${items.length} resultados`;
+    empty.hidden = shown > 0;
+  }
+
+  groups.forEach((g) => g.addEventListener("click", (e) => {
+    const b = e.target.closest("button");
+    if (!b) return;
+    g.querySelectorAll("button").forEach((x) => x.setAttribute("aria-pressed", x === b));
+    apply();
+  }));
+  if (search) search.addEventListener("input", apply);
 });
 
-document.getElementById("year").textContent = new Date().getFullYear();
+// Formulario de contacto -> WhatsApp
+const form = document.getElementById("quote");
+if (form) {
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const f = new FormData(form);
+    const empresa = f.get("empresa").trim();
+    const text = `Hola Compusis, soy ${f.get("nombre").trim()}${empresa ? ` de ${empresa}` : ""}.\nMe interesa: ${f.get("interes")}.\n${f.get("mensaje").trim()}`;
+    window.open(`https://wa.me/${form.dataset.wa}?text=${encodeURIComponent(text)}`, "_blank", "noopener");
+  });
+}
