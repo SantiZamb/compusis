@@ -304,6 +304,12 @@ p { margin: 0 0 1em; }
 .check-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; max-width: 640px; }
 .check-list li { position: relative; padding-left: 26px; }
 .check-list li::before { content: ""; position: absolute; left: 0; top: .5em; width: 10px; height: 10px; background: var(--red); }
+.detail-sub-first { margin-top: 0; }
+.modules { display: grid; grid-template-columns: 1.3fr 1fr; gap: 16px; max-width: 760px; }
+.modules > div { background: var(--paper); padding: 20px 22px; }
+.modules h3 { font-size: 1.1rem; font-variation-settings: "wdth" 85; margin: 0 0 10px; }
+.modules ol, .modules ul { margin: 0; padding-left: 1.3em; display: grid; gap: 6px; }
+.modules li::marker { color: var(--red); font-weight: 700; }
 .accordion { margin-top: 32px; border-top: 1px solid var(--line); max-width: 640px; }
 .accordion details { border-bottom: 1px solid var(--line); }
 .accordion summary { cursor: pointer; padding: 14px 0; font-weight: 700; color: var(--navy-deep); list-style: none; display: flex; justify-content: space-between; gap: 16px; }
@@ -463,7 +469,8 @@ p { margin: 0 0 1em; }
   .utility-tel { display: none; }
   .section-head, .two-col, .mv-edu, .quality, .solutions-grid, .contact-grid, .cta-inner, .line-cards, .product-detail, .detail { grid-template-columns: 1fr; }
   .cta-band .btn-row { justify-content: flex-start; }
-  .detail-aside { position: static; }
+  .detail-aside { position: static; order: -1; }
+  .detail-aside .back-link { display: none; }
   .product-photo { padding: 24px; aspect-ratio: 4 / 3; }
   .card-grid, .card-grid-3 { grid-template-columns: 1fr; }
   .guide { grid-template-columns: 110px 1fr; }
@@ -475,7 +482,8 @@ p { margin: 0 0 1em; }
   .sector-grid { grid-template-columns: 1fr; }
   .sector img { aspect-ratio: 16 / 10; }
   .brand-list { grid-template-columns: repeat(2, 1fr); }
-  .contact-list li, .course-info div { grid-template-columns: 1fr; gap: 2px; }
+  .contact-list li, .course-info div, .modules { grid-template-columns: 1fr; gap: 2px; }
+  .modules { gap: 12px; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .stats, .benefits, .area-grid { grid-template-columns: 1fr; }
   .card-actions { flex-wrap: wrap; }

@@ -1,12 +1,15 @@
 // Programas técnicos laborales por competencias.
 // Para agregar un programa, copie un bloque y cambie sus datos:
-//   slug        identificador para la dirección web, sin espacios ni tildes (educacion/tecnicos/<slug>/)
-//   name        nombre oficial del programa
-//   sede        "bogota", "ibague" o "girardot" (ver SEDES en sitio.js)
-//   resolucion  resolución de aprobación
-//   desc        descripción del programa (opcional; se muestra en la ficha)
-//   info        datos adicionales [nombre, valor], por ejemplo duración o jornada (opcional)
-//   destacado   true para mostrarlo en la página de inicio (máximo 3 entre cursos y técnicos)
+//   slug           identificador para la dirección web, sin espacios ni tildes (educacion/tecnicos/<slug>/)
+//   name           nombre oficial del programa
+//   sede           "bogota", "ibague" o "girardot" (ver SEDES en sitio.js)
+//   resolucion     resolución de aprobación
+//   desc           objetivo del programa
+//   modulos        módulos específicos (contenidos)
+//   transversales  módulos transversales
+//   perfil         perfil ocupacional: cargos que puede desempeñar el egresado
+//   info           datos adicionales [nombre, valor], por ejemplo duración o jornada (opcional)
+//   destacado      true para mostrarlo en la página de inicio (máximo 3 entre cursos y técnicos)
 
 const TECNICOS = [
   {
@@ -14,7 +17,30 @@ const TECNICOS = [
     name: "Técnico Laboral en Auxiliar Contable y Financiero",
     sede: "ibague",
     resolucion: "Resolución 1700-1137 del 20 de abril de 2026",
-    desc: "",
+    desc: "Capacitar en las áreas para dominar el lenguaje financiero de las organizaciones, gestionar obligaciones tributarias, procesar nómina, administrar facturación y operar de forma eficiente las herramientas digitales y software contable vigentes.",
+    modulos: [
+      "Procesos Contables I",
+      "Procesos Contables II",
+      "Nómina y Prestaciones Sociales",
+      "Facturación",
+      "Legislación Tributaria",
+      "Contabilidad de Costos",
+      "Presupuestos",
+      "Software Contable",
+    ],
+    transversales: [
+      "Emprendimiento e Innovación",
+      "Herramientas Informáticas",
+      "Desarrollo Humano",
+      "Inglés A1",
+    ],
+    perfil: [
+      "Auxiliar o Asistente Contable y Financiero",
+      "Auxiliar de Nómina y Seguridad Social",
+      "Auxiliar de Facturación Electrónica",
+      "Auxiliar de Crédito, Cartera y Tesorería",
+      "Digitador y operador de Software Contable",
+    ],
     info: [],
     destacado: true,
   },
@@ -23,7 +49,30 @@ const TECNICOS = [
     name: "Técnico Laboral en Asistente de Sistemas Informáticos",
     sede: "ibague",
     resolucion: "Resolución 1700-1137 del 20 de abril de 2026",
-    desc: "",
+    desc: "Capacitar en las áreas de mayor demanda tecnológica: desarrollo de software, creación de sitios web (FrontEnd y Backend), modelado y gestión de bases de datos, soporte técnico a hardware/software y administración de redes de datos.",
+    modulos: [
+      "Fundamentos de Programación",
+      "Modelado de Datos",
+      "Diseño Web (FrontEnd)",
+      "Laboratorio PC",
+      "Programación",
+      "Gestión de Datos",
+      "Diseño Web (Backend) y Móvil",
+      "Redes de Datos",
+    ],
+    transversales: [
+      "Emprendimiento e Innovación",
+      "Herramientas Informáticas",
+      "Desarrollo Humano",
+      "Inglés A1",
+    ],
+    perfil: [
+      "Auxiliar o Asistente de Sistemas y Soporte Técnico (remoto o presencial)",
+      "Desarrollador Web Junior (FrontEnd y Backend)",
+      "Administrador de bases de datos y servidores de información",
+      "Auxiliar de soporte e instalación de redes y conectividad",
+      "Emprendedor independiente en mantenimiento de PC y creación de páginas web",
+    ],
     info: [],
     destacado: false,
   },
@@ -32,7 +81,30 @@ const TECNICOS = [
     name: "Técnico Laboral en Auxiliar Administrativo",
     sede: "ibague",
     resolucion: "Resolución 1700-1137 del 20 de abril de 2026",
-    desc: "",
+    desc: "Preparar a los estudiantes para liderar procesos operativos, organizar el flujo documental de la información, gestionar el talento humano, controlar inventarios y apoyar las tareas contables y logísticas indispensables de cualquier organización.",
+    modulos: [
+      "Fundamentos de Administración",
+      "Elaboración de Documentos",
+      "Nómina y Prestaciones Sociales",
+      "Procesos Contables",
+      "Gestión del Recurso Humano",
+      "Control de Inventarios",
+      "Organización de Eventos",
+      "Gestión Documental",
+    ],
+    transversales: [
+      "Emprendimiento e Innovación",
+      "Herramientas Informáticas",
+      "Desarrollo Humano",
+      "Inglés A1",
+    ],
+    perfil: [
+      "Auxiliar o Asistente Administrativo de Oficina",
+      "Auxiliar de Recursos Humanos o Selección de Personal",
+      "Auxiliar de Inventarios, Compras o Almacén",
+      "Auxiliar de Nómina y Facturación básica",
+      "Recepcionista o Asistente de Servicio al Cliente corporativo",
+    ],
     info: [],
     destacado: false,
   },
@@ -41,7 +113,30 @@ const TECNICOS = [
     name: "Técnico Laboral en Mercadeo y Publicidad",
     sede: "ibague",
     resolucion: "Resolución 1700-1137 del 20 de abril de 2026",
-    desc: "",
+    desc: "Capacitar a los estudiantes para diseñar estrategias comerciales de alto impacto, dominar canales publicitarios digitales, crear piezas gráficas atractivas, gestionar redes sociales profesionalmente y potenciar las ventas de cualquier marca.",
+    modulos: [
+      "Fundamentos de Mercadeo",
+      "Fundamentos de Administración",
+      "Marketing Digital",
+      "Herramientas de Edición y Diseño",
+      "Técnicas de Negociación y Ventas",
+      "Merchandising",
+      "Investigación de Mercados",
+      "Gestión de Redes Sociales",
+    ],
+    transversales: [
+      "Emprendimiento e Innovación",
+      "Herramientas Informáticas",
+      "Desarrollo Humano",
+      "Inglés A1",
+    ],
+    perfil: [
+      "Auxiliar o Asistente de Mercadeo y Ventas",
+      "Administrador o Gestor de Redes Sociales (Community Manager)",
+      "Diseñador de piezas publicitarias e imágenes digitales",
+      "Promotor y encargado de Merchandising en puntos de venta",
+      "Asesor Comercial y de Servicio al Cliente",
+    ],
     info: [],
     destacado: false,
   },
@@ -50,7 +145,25 @@ const TECNICOS = [
     name: "Técnico Laboral por Competencias en Administración de Redes y Programación de Computadores",
     sede: "girardot",
     resolucion: "Resolución 0240 del 23 de marzo de 2021",
-    desc: "",
+    desc: "Formar en la administración de redes informáticas, seguridad, soporte técnico, desarrollo web y gestión de bases de datos relacionales.",
+    modulos: [
+      "Diseño y Publicidad Digital",
+      "Administración de Redes",
+      "Administración y Base de Datos",
+    ],
+    transversales: [
+      "Tecnologías de la Informática",
+      "Actitud Emprendedora y Desarrollo Humano",
+      "Inglés",
+    ],
+    perfil: [
+      "Auxiliar de Sistemas",
+      "Operador de Centro de Cómputo",
+      "Diseño y manejo de Medios logísticos y publicitarios",
+      "Programación y Administración de Bases de datos",
+      "Soporte técnico presencial y/o remoto",
+      "Servicios de apoyo",
+    ],
     info: [],
     destacado: false,
   },
@@ -59,7 +172,25 @@ const TECNICOS = [
     name: "Técnico Laboral por Competencias en Gestión Empresarial y de Negocios",
     sede: "girardot",
     resolucion: "Resolución 0238 del 23 de marzo de 2021",
-    desc: "",
+    desc: "Formar competencias para crear, constituir, estructurar y administrar empresas de forma organizada, gestionando talento humano, mercadeo, ventas y proyectos con visión emprendedora.",
+    modulos: [
+      "Administración General",
+      "Administración Talento Humano",
+      "Gestión Mercadeo y Ventas",
+    ],
+    transversales: [
+      "Tecnologías de la Informática",
+      "Actitud Emprendedora y Desarrollo Humano",
+      "Inglés",
+    ],
+    perfil: [
+      "Auxiliar Administrativo",
+      "Auxiliar de Talento Humano",
+      "Administrar su propio Negocio o Empresa",
+      "Asesor comercial",
+      "Vigía de seguridad y salud en el trabajo",
+      "Agente de ventas",
+    ],
     info: [],
     destacado: false,
   },
@@ -68,7 +199,27 @@ const TECNICOS = [
     name: "Técnico Laboral por Competencias en Gestión Contable Sistematizada",
     sede: "girardot",
     resolucion: "Resolución 0242 del 23 de marzo de 2021",
-    desc: "",
+    desc: "Llevar un registro ordenado y preciso de las operaciones financieras, preparar informes contables y fiscales, apoyar la toma de decisiones gerenciales interpretando datos, gestionar impuestos y nóminas, y aplicar la normativa contable, todo ello con el fin de dar transparencia y control sobre la situación económica de una empresa usando herramientas y software especializados.",
+    modulos: [
+      "Contabilidad General",
+      "Contabilidad Sistematizada",
+      "Administración",
+    ],
+    transversales: [
+      "Tecnologías de la Informática",
+      "Actitud Emprendedora y Desarrollo Humano",
+      "Inglés",
+    ],
+    perfil: [
+      "Auxiliar Contable",
+      "Auxiliar Administrativo",
+      "Liquidador de Nómina e Impuestos",
+      "Auxiliar de Crédito y Cartera",
+      "Asistente departamento financiero",
+      "Digitador Software Contable",
+      "Auxiliar de Facturación",
+      "Auxiliar de Tesorería",
+    ],
     info: [],
     destacado: false,
   },
@@ -77,7 +228,25 @@ const TECNICOS = [
     name: "Técnico Laboral por Competencias en Diseño Gráfico Publicitario y Multimedia",
     sede: "girardot",
     resolucion: "Resolución 0241 del 23 de marzo de 2021",
-    desc: "",
+    desc: "Desarrollar piezas publicitarias impresas y digitales, imagen corporativa, animación, producción audiovisual y material promocional para la web.",
+    modulos: [
+      "Diseño Publicitario",
+      "Diseño Multimedial",
+      "Gestión Mercadeo y Ventas",
+    ],
+    transversales: [
+      "Tecnologías de la Informática",
+      "Actitud Emprendedora y Desarrollo Humano",
+      "Inglés",
+    ],
+    perfil: [
+      "Asistente de Diseño Publicitario y Editorial",
+      "Diseño de animaciones y páginas Web",
+      "Edición de Fotografía",
+      "Ilustrador",
+      "Auxiliar de pre-impresión",
+      "Agente de ventas",
+    ],
     info: [],
     destacado: false,
   },
@@ -86,7 +255,23 @@ const TECNICOS = [
     name: "Técnico Laboral por Competencias en Mantenimiento de Equipos de Cómputo",
     sede: "girardot",
     resolucion: "Resolución 0239 del 23 de marzo de 2021",
-    desc: "",
+    desc: "Capacitar en el mantenimiento preventivo y correctivo de hardware y software, ensamble, diagnóstico de fallas, sistemas operativos y administración de redes locales y seguridad.",
+    modulos: [
+      "Mantenimiento de Hardware y Software",
+      "Administración de Redes",
+      "Diseño",
+    ],
+    transversales: [
+      "Tecnologías de la Informática",
+      "Actitud Emprendedora y Desarrollo Humano",
+      "Inglés",
+    ],
+    perfil: [
+      "Técnico en Reparación y Ensamble",
+      "Auxiliar de soporte Técnico",
+      "Montar su propio negocio de Ensamble, Ventas y Mantenimiento de Computadores",
+      "Asistente de diseño",
+    ],
     info: [],
     destacado: false,
   },

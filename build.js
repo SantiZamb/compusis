@@ -211,6 +211,7 @@ function tecnicoCard(u, t) {
             <p class="tag">Técnico laboral · Sede ${esc(s.name)}</p>
             <h3><a class="card-link" href="${u(`educacion/tecnicos/${t.slug}/`)}">${esc(t.name)}</a></h3>
             <p class="card-meta">${esc(t.resolucion)}</p>
+            ${t.perfil?.length ? `<p class="card-text">Podrás trabajar como ${esc(t.perfil[0])}, entre otros cargos.</p>` : ""}
             <span class="card-more" aria-hidden="true">Ver programa</span>
           </li>`;
 }
@@ -566,7 +567,7 @@ for (const t of TECNICOS) {
     route: `educacion/tecnicos/${t.slug}/`,
     section: "educacion",
     title: t.name,
-    desc: `${t.name}, sede ${s.name}. ${t.resolucion}. Certificado de Aptitud Ocupacional.`,
+    desc: t.desc ? `${t.name}, sede ${s.name}. ${t.desc}` : `${t.name}, sede ${s.name}. ${t.resolucion}. Certificado de Aptitud Ocupacional.`,
     crumbs: [["Inicio", ""], EDU_CRUMB, ["Técnicos laborales", "educacion/tecnicos/"], [t.name, `educacion/tecnicos/${t.slug}/`]],
     jsonld: { "@context": "https://schema.org", "@type": "Course", name: t.name, description: t.desc || `Programa técnico laboral por competencias, sede ${s.name}. ${t.resolucion}.`, provider: { "@type": "EducationalOrganization", name: SITIO.nombre, sameAs: SITIO.BASE_URL } },
     body: (u, p) => `${pageHead(p, u, { tag: `Técnico laboral · Sede ${s.name}`, title: t.name, lead: esc(t.resolucion) })}
@@ -574,13 +575,30 @@ for (const t of TECNICOS) {
     <section class="section">
       <div class="wrap detail">
         <div class="detail-main">
-          ${t.desc ? `<p class="detail-lead">${esc(t.desc)}</p>` : `<p class="detail-lead">Programa técnico laboral por competencias con registro oficial, ofrecido en nuestra sede de ${esc(s.name)}.</p>`}
+          ${t.desc ? `<h2 class="detail-sub detail-sub-first">Objetivo del programa</h2>
+          <p class="detail-lead">${esc(t.desc)}</p>` : `<p class="detail-lead">Programa técnico laboral por competencias con registro oficial, ofrecido en nuestra sede de ${esc(s.name)}.</p>`}
           <dl class="course-info">
             <div><dt>Sede</dt><dd>${esc(s.name)}</dd></div>
             <div><dt>Registro</dt><dd>${esc(t.resolucion)}</dd></div>
             <div><dt>Certificación</dt><dd>Certificado de Aptitud Ocupacional como Técnico Laboral por Competencias</dd></div>${(t.info || []).map(([k, v]) => `
             <div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join("")}
-          </dl>
+          </dl>${t.perfil?.length ? `
+          <h2 class="detail-sub">Perfil ocupacional</h2>
+          <p class="muted">Al terminar el programa podrás desempeñarte como:</p>
+          <ul class="check-list">${t.perfil.map((x) => `
+            <li>${esc(x)}</li>`).join("")}
+          </ul>` : ""}${t.modulos?.length ? `
+          <h2 class="detail-sub">Plan de estudios</h2>
+          <div class="modules">
+            <div>
+              <h3>Módulos específicos</h3>
+              <ol>${t.modulos.map((x) => `<li>${esc(x)}</li>`).join("")}</ol>
+            </div>${t.transversales?.length ? `
+            <div>
+              <h3>Módulos transversales</h3>
+              <ul>${t.transversales.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>
+            </div>` : ""}
+          </div>` : ""}
           <div class="accordion">
             <details>
               <summary>¿Cómo me inscribo?</summary>
