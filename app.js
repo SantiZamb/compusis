@@ -99,6 +99,8 @@ if (form) {
     const f = new FormData(form);
     const empresa = f.get("empresa").trim();
     const text = `Hola Compusis, soy ${f.get("nombre").trim()}${empresa ? ` de ${empresa}` : ""}.\nMe interesa: ${f.get("interes")}.\n${f.get("mensaje").trim()}`;
-    window.open(`https://wa.me/${form.dataset.wa}?text=${encodeURIComponent(text)}`, "_blank", "noopener");
+    const linea = form.interes.selectedOptions[0].dataset.linea || "academica";
+    const numero = linea === "comercial" ? form.dataset.waComercial : form.dataset.waAcademica;
+    window.open(`https://wa.me/${numero}?text=${encodeURIComponent(text)}`, "_blank", "noopener");
   });
 }

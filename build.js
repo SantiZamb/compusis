@@ -25,7 +25,8 @@ const { SITIO, SEDES, TECH_GROUPS, INDUSTRIAS, GUIAS, MARCAS } = load("sitio.js"
 
 // ---------- Utilidades ----------
 const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
-const wa = (text) => `https://wa.me/${SITIO.whatsapp}?text=${encodeURIComponent(text)}`;
+const wa = (text, linea = "academica") => `https://wa.me/${SITIO.whatsapp[linea]}?text=${encodeURIComponent(text)}`;
+const tel = (t) => `<a href="tel:+57${t.replace(/\s/g, "")}">${t}</a>`;
 const fold = (s) => String(s).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
 const slugify = (s) => fold(s).replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 const sedeById = Object.fromEntries(SEDES.map((s) => [s.id, s]));
@@ -45,7 +46,7 @@ for (const list of [["cursos.js", CURSOS], ["tecnicos.js", TECNICOS], ["producto
   if (dup) throw new Error(`${list[0]}: identificador repetido "${dup}"`);
 }
 
-const ETDH = "COMPUSIS DE COLOMBIA es una Institución de Educación para el Trabajo y el Desarrollo Humano (ETDH). Los programas ofertados conducen a la obtención de un Certificado de Aptitud Ocupacional como Técnico Laboral por Competencias. No otorgan título profesional universitario.";
+const LEYENDA = "La función de inspección y vigilancia de este programa está a cargo de la Secretaría de Educación y el programa ofrecido no conduce a la obtención de un título profesional.";
 
 const ICON = {
   cap: '<path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/><path d="M22 9v6"/>',
@@ -83,7 +84,7 @@ function header(p, u) {
     <div class="wrap utility-inner">
       <a href="${esc(SITIO.plataforma)}" target="_blank" rel="noopener">Plataforma estudiantes</a>
       <a href="${esc(SITIO.preinscripcion)}" target="_blank" rel="noopener">Preinscripción</a>
-      <a href="tel:+57${SITIO.telefonos[0].replace(/\s/g, "")}" class="utility-tel">${SITIO.telefonos[0]}</a>
+      <a href="tel:+57${SITIO.telefonos.academica[0].replace(/\s/g, "")}" class="utility-tel">Atención académica ${SITIO.telefonos.academica[0]}</a>
     </div>
   </div>
   <header class="site-header">
@@ -91,7 +92,7 @@ function header(p, u) {
       <a href="${u()}" class="brand" aria-label="Compusis de Colombia, inicio">
         <img src="${u("assets/logo.png")}" alt="Compusis de Colombia" width="200" height="50">
       </a>
-      <a class="wa-quick" href="${wa("Hola Compusis, quiero más información")}" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">${icon("chat")}</a>
+      <a class="wa-quick" href="${wa("Hola Compusis, quiero más información", p.section === "tecnologia" ? "comercial" : "academica")}" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">${icon("chat")}</a>
       <button type="button" class="menu-toggle" aria-expanded="false" aria-controls="menu">Menú</button>
       <nav id="menu" class="nav" aria-label="Principal">
         <ul class="nav-list">
@@ -113,7 +114,7 @@ function header(p, u) {
           <li${active("nosotros")}><a href="${u("nosotros/")}"${cur("nosotros/")}>Nosotros</a></li>
           <li${active("contacto")}><a href="${u("contacto/")}"${cur("contacto/")}>Contacto</a></li>
         </ul>
-        <a class="btn btn-red btn-sm nav-wa" href="${wa("Hola Compusis, quiero más información")}" target="_blank" rel="noopener">Escríbenos por WhatsApp</a>
+        <a class="btn btn-red btn-sm nav-wa" href="${wa("Hola Compusis, quiero más información", p.section === "tecnologia" ? "comercial" : "academica")}" target="_blank" rel="noopener">Escríbenos por WhatsApp</a>
       </nav>
     </div>
   </header>`;
@@ -132,7 +133,7 @@ function footer(u) {
         <div class="footer-brand">
           <img src="${u("assets/logo-sello.png")}" alt="Compusis de Colombia" width="180" height="50" loading="lazy">
           <p>Fortalecemos el talento, impulsamos la tecnología.</p>
-          <p class="footer-phones">${SITIO.telefonos.map((t) => `<a href="tel:+57${t.replace(/\s/g, "")}">${t}</a>`).join(" · ")}<br><a href="mailto:${SITIO.correo}">${SITIO.correo}</a></p>
+          <p class="footer-phones"><span>Atención académica</span>${SITIO.telefonos.academica.map(tel).join(" · ")}<span>Soluciones tecnológicas</span>${SITIO.telefonos.comercial.map(tel).join(" · ")}<br><a href="mailto:${SITIO.correo}">${SITIO.correo}</a></p>
         </div>${col("Educación", [
           ["Técnicos laborales", u("educacion/tecnicos/")],
           ["Cursos cortos", u("educacion/cursos/")],
@@ -155,7 +156,7 @@ function footer(u) {
           <ul class="footer-sedes">${SEDES.map((s) => `<li><a href="${esc(s.map)}" target="_blank" rel="noopener"><strong>${s.name}</strong> ${esc(s.address)}</a></li>`).join("")}</ul>
         </div>
       </div>
-      <p class="footer-legal">© ${year} Compusis de Colombia. ${esc(ETDH.replace("COMPUSIS DE COLOMBIA", "Compusis de Colombia"))}</p>
+      <p class="footer-legal">© ${year} Compusis de Colombia. ${esc(LEYENDA)}</p>
     </div>
   </footer>`;
 }
@@ -181,8 +182,7 @@ function pageHead(p, u, { tag = "", title, lead = "", actions = "", extra = "", 
 
 const btn = (cls, href, label, ext = true) => `<a class="btn ${cls}" href="${esc(href)}"${ext ? ' target="_blank" rel="noopener"' : ""}>${esc(label)}</a>`;
 const btnPre = (label = "Preinscríbete en línea") => btn("btn-red", SITIO.preinscripcion, label);
-const contenidosLink = (u, cls = "doc-link") => `<a class="${cls}" href="${u(SITIO.contenidosTecnicos)}" download>Descargar contenidos de los programas (Excel)</a>`;
-const etdhNote = () => `<p class="etdh-note">${esc(ETDH).replace("COMPUSIS DE COLOMBIA", "<strong>COMPUSIS DE COLOMBIA</strong>")}</p>`;
+const etdhNote = () => `<p class="etdh-note">${esc(LEYENDA)}</p>`;
 
 function sectionHead(title, text = "", id = "") {
   return `
@@ -205,6 +205,8 @@ function ctaBand({ title, text, buttons }) {
     </section>`;
 }
 
+const tipoTecnico = (t) => (/por competencias/i.test(t.name) ? "Programa técnico laboral por competencias" : "Programa técnico laboral");
+
 function tecnicoCard(u, t) {
   const s = sedeById[t.sede];
   return `
@@ -212,6 +214,7 @@ function tecnicoCard(u, t) {
             <p class="tag">Técnico laboral · Sede ${esc(s.name)}</p>
             <h3><a class="card-link" href="${u(`educacion/tecnicos/${t.slug}/`)}">${esc(t.name)}</a></h3>
             <p class="card-meta">${esc(t.resolucion)}</p>
+            ${t.perfil?.length ? `<p class="card-text">Podrás trabajar como ${esc(t.perfil[0])}, entre otros cargos.</p>` : ""}
             <span class="card-more" aria-hidden="true">Ver programa</span>
           </li>`;
 }
@@ -241,7 +244,7 @@ function productCard(u, p) {
               <dl class="specs">${specRows(p.specs.slice(0, 2))}</dl>
               <div class="card-actions">
                 <span class="card-more" aria-hidden="true">Ver ficha</span>
-                ${btn("btn-navy btn-sm", wa(`Hola Compusis, quiero cotizar: ${p.name}`), "Cotizar")}
+                ${btn("btn-navy btn-sm", wa(`Hola Compusis, quiero cotizar: ${p.name}`, "comercial"), "Cotizar")}
               </div>
             </div>
           </li>`;
@@ -325,7 +328,7 @@ const qualityBlock = (u) => `
 
 function contactForm(u) {
   return `
-        <form class="quote" id="quote" data-wa="${SITIO.whatsapp}">
+        <form class="quote" id="quote" data-wa-academica="${SITIO.whatsapp.academica}" data-wa-comercial="${SITIO.whatsapp.comercial}">
           <label>Nombre <input name="nombre" required autocomplete="name"></label>
           <label>Empresa <input name="empresa" autocomplete="organization"></label>
           <label>Me interesa
@@ -333,7 +336,7 @@ function contactForm(u) {
               <option>Programas técnicos laborales</option>
               <option>Cursos cortos</option>
               <option>Capacitación para mi empresa</option>
-              <option>Equipos y soluciones tecnológicas</option>
+              <option data-linea="comercial">Equipos y soluciones tecnológicas</option>
             </select>
           </label>
           <label>¿Qué necesitas?
@@ -365,7 +368,7 @@ page({
     image: `${SITIO.BASE_URL}assets/og.jpg`,
     logo: `${SITIO.BASE_URL}assets/logo.png`,
     email: SITIO.correo,
-    telephone: SITIO.telefonos.map((t) => `+57 ${t}`),
+    telephone: [...SITIO.telefonos.academica, ...SITIO.telefonos.comercial].map((t) => `+57 ${t}`),
     address: { "@type": "PostalAddress", streetAddress: "Calle 17 N.º 98-90, piso 2", addressLocality: "Bogotá", addressRegion: "Bogotá D. C.", addressCountry: "CO" },
     sameAs: ["https://www.compusis.edu.co"],
   },
@@ -447,7 +450,7 @@ page({
 ${ctaBand({
       title: "¿Hablamos?",
       text: "Te asesoramos para elegir tu programa de formación o la solución tecnológica que necesita tu empresa.",
-      buttons: `${btn("btn-red", wa("Hola Compusis, quiero asesoría académica sobre sus programas"), "Asesoría académica")}${btn("btn-light", wa("Hola Compusis, quiero asesoría comercial sobre equipos y soluciones"), "Asesoría comercial")}`,
+      buttons: `${btn("btn-red", wa("Hola Compusis, quiero asesoría académica sobre sus programas"), "Asesoría académica")}${btn("btn-light", wa("Hola Compusis, quiero asesoría comercial sobre equipos y soluciones", "comercial"), "Asesoría comercial")}`,
     })}`;
   },
 });
@@ -476,7 +479,7 @@ page({
           <li class="card card-edu cat-card">
             ${icon("cap", "cat-icon")}
             <h3><a class="card-link" href="${u("educacion/tecnicos/")}">Técnicos laborales</a></h3>
-            <p class="card-text">Programas por competencias con registro oficial, que conducen a un Certificado de Aptitud Ocupacional.</p>
+            <p class="card-text">Programas con registro oficial que conducen a un Certificado de Aptitud Ocupacional.</p>
             <span class="card-more" aria-hidden="true">${TECNICOS.length} programas en ${SEDES_TEC.map((s) => s.name).join(" y ")}</span>
           </li>
           <li class="card card-edu cat-card">
@@ -538,14 +541,12 @@ page({
   route: "educacion/tecnicos/",
   section: "educacion",
   title: "Técnicos laborales",
-  desc: `Programas técnicos laborales por competencias con registro oficial en ${SEDES_TEC.map((s) => s.name).join(" y ")}.`,
+  desc: `Programas técnicos laborales con registro oficial en ${SEDES_TEC.map((s) => s.name).join(" y ")}.`,
   crumbs: [["Inicio", ""], EDU_CRUMB, ["Técnicos laborales", "educacion/tecnicos/"]],
   body: (u, p) => `${pageHead(p, u, {
-    title: "Programas técnicos laborales por competencias",
+    title: "Programas técnicos laborales",
     lead: `Programas con registro oficial en nuestras sedes de ${SEDES_TEC.map((s) => s.name).join(" y ")}.`,
     actions: `${btnPre("Preinscríbete a un programa")}${btn("btn-ghost", wa("Hola Compusis, quiero información sobre los programas técnicos laborales"), "Solicitar información")}`,
-    extra: `
-        <p class="doc-row">${contenidosLink(u)} <span>Objetivo, módulos y perfil ocupacional de cada programa.</span></p>`,
   })}
 
     <section class="section">
@@ -571,19 +572,36 @@ for (const t of TECNICOS) {
     title: t.name,
     desc: `${t.name}, sede ${s.name}. ${t.resolucion}. Certificado de Aptitud Ocupacional.`,
     crumbs: [["Inicio", ""], EDU_CRUMB, ["Técnicos laborales", "educacion/tecnicos/"], [t.name, `educacion/tecnicos/${t.slug}/`]],
-    jsonld: { "@context": "https://schema.org", "@type": "Course", name: t.name, description: t.desc || `Programa técnico laboral por competencias, sede ${s.name}. ${t.resolucion}.`, provider: { "@type": "EducationalOrganization", name: SITIO.nombre, sameAs: SITIO.BASE_URL } },
+    jsonld: { "@context": "https://schema.org", "@type": "Course", name: t.name, description: t.desc || `${tipoTecnico(t)}, sede ${s.name}. ${t.resolucion}.`, provider: { "@type": "EducationalOrganization", name: SITIO.nombre, sameAs: SITIO.BASE_URL } },
     body: (u, p) => `${pageHead(p, u, { tag: `Técnico laboral · Sede ${s.name}`, title: t.name, lead: esc(t.resolucion) })}
 
     <section class="section">
       <div class="wrap detail">
         <div class="detail-main">
-          ${t.desc ? `<p class="detail-lead">${esc(t.desc)}</p>` : `<p class="detail-lead">Programa técnico laboral por competencias con registro oficial, ofrecido en nuestra sede de ${esc(s.name)}.</p>`}
+          ${t.desc ? `<h2 class="detail-sub detail-sub-first">Objetivo del programa</h2>
+          <p class="detail-lead">${esc(t.desc)}</p>` : `<p class="detail-lead">${tipoTecnico(t)} con registro oficial, ofrecido en nuestra sede de ${esc(s.name)}.</p>`}
           <dl class="course-info">
             <div><dt>Sede</dt><dd>${esc(s.name)}</dd></div>
             <div><dt>Registro</dt><dd>${esc(t.resolucion)}</dd></div>
-            <div><dt>Certificación</dt><dd>Certificado de Aptitud Ocupacional como Técnico Laboral por Competencias</dd></div>${(t.info || []).map(([k, v]) => `
+            <div><dt>Certificación</dt><dd>Certificado de Aptitud Ocupacional como ${esc(t.name)}</dd></div>${(t.info || []).map(([k, v]) => `
             <div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join("")}
-          </dl>
+          </dl>${t.perfil?.length ? `
+          <h2 class="detail-sub">Perfil ocupacional</h2>
+          <p class="muted">Al terminar el programa podrás desempeñarte como:</p>
+          <ul class="check-list">${t.perfil.map((x) => `
+            <li>${esc(x)}</li>`).join("")}
+          </ul>` : ""}${t.modulos?.length ? `
+          <h2 class="detail-sub">Plan de estudios</h2>
+          <div class="modules">
+            <div>
+              <h3>Módulos específicos</h3>
+              <ol>${t.modulos.map((x) => `<li>${esc(x)}</li>`).join("")}</ol>
+            </div>${t.transversales?.length ? `
+            <div>
+              <h3>Módulos transversales</h3>
+              <ul>${t.transversales.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>
+            </div>` : ""}
+          </div>` : ""}
           <div class="accordion">
             <details>
               <summary>¿Cómo me inscribo?</summary>
@@ -595,7 +613,7 @@ for (const t of TECNICOS) {
             </details>
             <details>
               <summary>Información legal</summary>
-              <p>${esc(ETDH)}</p>
+              <p>${esc(LEYENDA)}</p>
             </details>
           </div>
         </div>
@@ -604,7 +622,6 @@ for (const t of TECNICOS) {
             <p class="aside-title">¿Te interesa este programa?</p>
             ${btnPre("Preinscríbete en línea")}
             ${btn("btn-ghost", ask, "Solicitar información")}
-            ${contenidosLink(u)}
           </div>
           <a class="back-link" href="${u("educacion/tecnicos/")}">Volver a técnicos laborales</a>
         </aside>
@@ -759,7 +776,7 @@ ${ctaBand({
 
 // ---------- Tecnología ----------
 const TEC_CRUMB = ["Tecnología", "tecnologia/"];
-const askSales = wa("Hola Compusis, quiero asesoría sobre equipos y soluciones tecnológicas");
+const askSales = wa("Hola Compusis, quiero asesoría sobre equipos y soluciones tecnológicas", "comercial");
 
 page({
   route: "tecnologia/",
@@ -821,7 +838,7 @@ page({
 ${ctaBand({
     title: "¿Necesitas equipar tu operación?",
     text: "Cuéntanos qué necesitas y te enviamos opciones y una cotización.",
-    buttons: `${btn("btn-red", wa("Hola Compusis, quiero una cotización de equipos"), "Solicitar cotización")}${btn("btn-light", askSales, "Hablar con un asesor")}`,
+    buttons: `${btn("btn-red", wa("Hola Compusis, quiero una cotización de equipos", "comercial"), "Solicitar cotización")}${btn("btn-light", askSales, "Hablar con un asesor")}`,
   })}`,
 });
 
@@ -844,7 +861,7 @@ page({
             <label class="search">${icon("search", "search-icon")}<span class="visually-hidden">Buscar productos</span><input type="search" data-search placeholder="Buscar por nombre, marca o característica" autocomplete="off"></label>`
       + chips("grupo", "Filtrar por categoría", GROUPS.map((g) => [g.slug, g.name, groupProducts(g).length]), PRODUCTS.length),
     items: PRODUCTS.map((x) => productCard(u, x)).join(""),
-    empty: `No encontramos equipos con esa búsqueda. <a class="text-link" href="${esc(wa("Hola Compusis, busco un equipo que no está en el portafolio"))}" target="_blank" rel="noopener">Pregúntanos por WhatsApp</a>, lo buscamos con nuestra red de aliados.`,
+    empty: `No encontramos equipos con esa búsqueda. <a class="text-link" href="${esc(wa("Hola Compusis, busco un equipo que no está en el portafolio", "comercial"))}" target="_blank" rel="noopener">Pregúntanos por WhatsApp</a>, lo buscamos con nuestra red de aliados.`,
   })}
       </div>
     </section>`,
@@ -873,7 +890,7 @@ for (const g of GROUPS) {
 ${ctaBand({
       title: `¿Buscas algo en ${g.name.toLowerCase()}?`,
       text: "Te asesoramos para elegir el equipo adecuado para tu operación.",
-      buttons: btn("btn-red", wa(`Hola Compusis, quiero asesoría en ${g.name.toLowerCase()}`), "Solicitar asesoría"),
+      buttons: btn("btn-red", wa(`Hola Compusis, quiero asesoría en ${g.name.toLowerCase()}`, "comercial"), "Solicitar asesoría"),
     })}`,
   });
 }
@@ -884,7 +901,7 @@ for (const x of PRODUCTS) {
   const sug = (x.sugeridos || []).map((id) => productById[id]).filter(Boolean);
   const ficha = (u) => x.ficha
     ? `<a class="ficha" href="${u(`assets/fichas/${encodeURIComponent(x.ficha)}`)}" target="_blank" rel="noopener">Descargar ficha técnica (PDF)</a>`
-    : `<a class="ficha" href="${esc(wa(`Hola Compusis, ¿me pueden enviar la ficha técnica de: ${x.name}?`))}" target="_blank" rel="noopener">Solicitar ficha técnica</a>`;
+    : `<a class="ficha" href="${esc(wa(`Hola Compusis, ¿me pueden enviar la ficha técnica de: ${x.name}?`, "comercial"))}" target="_blank" rel="noopener">Solicitar ficha técnica</a>`;
   page({
     route: `tecnologia/productos/${x.id}/`,
     section: "tecnologia",
@@ -908,8 +925,8 @@ for (const x of PRODUCTS) {
           <dl class="specs">${specRows(x.specs)}</dl>
           ${ficha(u)}
           <div class="btn-row">
-            ${btn("btn-red", wa(`Hola Compusis, quiero cotizar: ${x.name}`), "Cotizar este equipo")}
-            ${btn("btn-ghost", wa(`Hola Compusis, tengo una pregunta sobre: ${x.name}`), "Hacer una pregunta")}
+            ${btn("btn-red", wa(`Hola Compusis, quiero cotizar: ${x.name}`, "comercial"), "Cotizar este equipo")}
+            ${btn("btn-ghost", wa(`Hola Compusis, tengo una pregunta sobre: ${x.name}`, "comercial"), "Hacer una pregunta")}
           </div>
           <a class="back-link" href="${u(`tecnologia/categoria/${g.slug}/`)}">Volver a ${esc(g.name.toLowerCase())}</a>
         </div>
@@ -1039,7 +1056,8 @@ page({
         <div>
           <h2 class="contact-sub">Estamos cerca de ti</h2>${sedesBlock()}
           <ul class="contact-list">
-            <li><span>Teléfonos</span> <span>${SITIO.telefonos.map((t) => `<a href="tel:+57${t.replace(/\s/g, "")}">${t}</a>`).join(" · ")}</span></li>
+            <li><span>Atención académica</span> <span>${SITIO.telefonos.academica.map(tel).join(" · ")} <small>(WhatsApp y llamadas)</small></span></li>
+            <li><span>Soluciones tecnológicas</span> <span>${SITIO.telefonos.comercial.map(tel).join(" · ")}</span></li>
             <li><span>Correo</span> <a href="mailto:${SITIO.correo}">${SITIO.correo}</a></li>
             <li><span>Estudiantes</span> <a href="${esc(SITIO.plataforma)}" target="_blank" rel="noopener">Plataforma académica</a></li>
           </ul>

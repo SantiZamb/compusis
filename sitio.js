@@ -4,13 +4,13 @@
 const SITIO = {
   BASE_URL: "https://santizamb.github.io/compusis/",
   nombre: "Compusis de Colombia",
-  whatsapp: "573108721135",
-  telefonos: ["310 872 1135", "317 377 6690"],
+  // Educación (programas, cursos y capacitación): línea de Fontibón, centralizada en Q10.
+  // Tecnología (equipos y soluciones): línea comercial.
+  whatsapp: { academica: "573133253236", comercial: "573108721135" },
+  telefonos: { academica: ["313 325 3236"], comercial: ["310 872 1135", "317 377 6690"] },
   correo: "soporte@compusis.edu.co",
   plataforma: "https://site2.q10.com/login?ReturnUrl=%2F&aplentId=e5a3adba-d8db-4343-bf0a-eb21a2a2d727",
   preinscripcion: "https://site4.q10.com/preinscripcion?aplentId=e5a3adba-d8db-4343-bf0a-eb21a2a2d727",
-  // Documento descargable con los contenidos de los técnicos laborales (en assets/documentos/)
-  contenidosTecnicos: "assets/documentos/contenidos-programas-compusis.xlsx",
 };
 
 const SEDES = [

@@ -309,6 +309,12 @@ p { margin: 0 0 1em; }
 .doc-row { margin: 18px 0 0; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; }
 .doc-row span { color: var(--muted); font-size: .92rem; }
 .aside-card .doc-link { justify-self: center; margin-top: 6px; }
+.detail-sub-first { margin-top: 0; }
+.modules { display: grid; grid-template-columns: 1.3fr 1fr; gap: 16px; max-width: 760px; }
+.modules > div { background: var(--paper); padding: 20px 22px; }
+.modules h3 { font-size: 1.1rem; font-variation-settings: "wdth" 85; margin: 0 0 10px; }
+.modules ol, .modules ul { margin: 0; padding-left: 1.3em; display: grid; gap: 6px; }
+.modules li::marker { color: var(--red); font-weight: 700; }
 .accordion { margin-top: 32px; border-top: 1px solid var(--line); max-width: 640px; }
 .accordion details { border-bottom: 1px solid var(--line); }
 .accordion summary { cursor: pointer; padding: 14px 0; font-weight: 700; color: var(--navy-deep); list-style: none; display: flex; justify-content: space-between; gap: 16px; }
@@ -386,7 +392,8 @@ p { margin: 0 0 1em; }
 .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; }
 .contact-sub { font-size: 1.5rem; margin: 0 0 10px; }
 .contact-list { list-style: none; padding: 0; margin: 28px 0 0; }
-.contact-list li { padding: 12px 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: 110px 1fr; gap: 12px; }
+.contact-list li { padding: 12px 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: 170px 1fr; gap: 12px; }
+.contact-list small { color: var(--muted); font-weight: 400; }
 .contact-list span { color: var(--muted); }
 .contact-list a { font-weight: 700; color: var(--navy-deep); text-decoration: none; }
 .contact-list a:hover { color: var(--red); text-decoration: underline; }
@@ -418,6 +425,9 @@ p { margin: 0 0 1em; }
 .site-footer a:hover { color: var(--white); text-decoration: underline; }
 .footer-brand img { height: 44px; width: auto; background: var(--white); padding: 6px 10px; border-radius: 3px; margin-bottom: 14px; }
 .footer-phones a { color: var(--white); font-weight: 600; }
+.footer-phones a { white-space: nowrap; }
+.footer-phones span { display: block; margin-top: 8px; font-size: .85rem; }
+.footer-phones span:first-child { margin-top: 0; }
 .footer-sedes strong { display: block; color: var(--white); }
 .footer-legal { margin: 40px 0 0; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, .15); font-size: .85rem; color: #aab0cc; }
 
@@ -481,7 +491,8 @@ p { margin: 0 0 1em; }
   .sector-grid { grid-template-columns: 1fr; }
   .sector img { aspect-ratio: 16 / 10; }
   .brand-list { grid-template-columns: repeat(2, 1fr); }
-  .contact-list li, .course-info div { grid-template-columns: 1fr; gap: 2px; }
+  .contact-list li, .course-info div, .modules { grid-template-columns: 1fr; gap: 2px; }
+  .modules { gap: 12px; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .stats, .benefits, .area-grid { grid-template-columns: 1fr; }
   .card-actions { flex-wrap: wrap; }
